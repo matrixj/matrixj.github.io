@@ -5,15 +5,21 @@
   
 
   
-  <title>Keep It Simple</title>
+  <title>tcmalloc问题分析-内存碎片 | Keep It Simple</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Keep It Simple">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="tcmalloc是一个多级内存管理的结构,层次为： thread cache -&amp;gt; central cache -&amp;gt; pageheap，因为前两者都是有限大小的，所以出现内存疑似泄漏时最大可能涉及到的内容是pageheap。下面会使用一个线上的问题，来分析一下tcmalloc是如何使用系统的内存的。 前置知识PageHeapPageHeap是tc中最重要的一个内存管理结构，它包含两个主">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tcmalloc问题分析-内存碎片">
+<meta property="og:url" content="http://yoursite.com/2018/04/25/tcmalloc_question/index.html">
 <meta property="og:site_name" content="Keep It Simple">
+<meta property="og:description" content="tcmalloc是一个多级内存管理的结构,层次为： thread cache -&amp;gt; central cache -&amp;gt; pageheap，因为前两者都是有限大小的，所以出现内存疑似泄漏时最大可能涉及到的内容是pageheap。下面会使用一个线上的问题，来分析一下tcmalloc是如何使用系统的内存的。 前置知识PageHeapPageHeap是tc中最重要的一个内存管理结构，它包含两个主">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://km.oa.com/files/photos/pictures//20180403//1522751217_60.png">
+<meta property="og:updated_time" content="2018-04-25T06:06:48.604Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Keep It Simple">
+<meta name="twitter:title" content="tcmalloc问题分析-内存碎片">
+<meta name="twitter:description" content="tcmalloc是一个多级内存管理的结构,层次为： thread cache -&amp;gt; central cache -&amp;gt; pageheap，因为前两者都是有限大小的，所以出现内存疑似泄漏时最大可能涉及到的内容是pageheap。下面会使用一个线上的问题，来分析一下tcmalloc是如何使用系统的内存的。 前置知识PageHeapPageHeap是tc中最重要的一个内存管理结构，它包含两个主">
+<meta name="twitter:image" content="http://km.oa.com/files/photos/pictures//20180403//1522751217_60.png">
   
     <link rel="alternate" href="/atom.xml" title="Keep It Simple" type="application/atom+xml">
   
@@ -60,9 +66,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-tcmalloc_question" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-tcmalloc_question" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/25/tcmalloc_question/" class="article-date">
   <time datetime="2018-04-25T06:06:48.621Z" itemprop="datePublished">2018-04-25</time>
@@ -75,8 +79,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/25/tcmalloc_question/">tcmalloc问题分析-内存碎片</a>
+    <h1 class="article-title" itemprop="name">
+      tcmalloc问题分析-内存碎片
     </h1>
   
 
@@ -160,11 +164,9 @@
     </footer>
   </div>
   
-</article>
-
-
+    
   
-
+</article>
 
 </section>
         
